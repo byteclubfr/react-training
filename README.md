@@ -1,2 +1,17 @@
-# react-training
-React + JSX + Dev stack (npm, browserify, hot reload) + Redux + Isomorphism + React Router
+# React training
+
+Step 1: discover React
+
+## Installation
+
+Nothing to do
+
+## Development
+
+* Launch ``static/index.html`` in your browser
+* Edit JS/CSS
+* Refresh
+
+## Production
+
+Deploy.
