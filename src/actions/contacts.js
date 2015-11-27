@@ -7,5 +7,5 @@ const receiveContacts = createAction('RECEIVE_CONTACTS', (contacts) => contacts)
 const requestContacts = createAction('REQUEST_CONTACTS')
 export const fetchContacts = (api) => (dispatch) => {
   dispatch(requestContacts())
-  api.fetchContacts().then((data) => dispatch(receiveContacts(data)))
+  return api.fetchContacts().then((data) => dispatch(receiveContacts(data)))
 }

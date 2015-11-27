@@ -9,7 +9,7 @@ import * as api from './api'
 
 const store = configureStore(window.APP_STATE)
 
-store.dispatch(fetchContacts(api))
+//store.dispatch(fetchContacts(api))
 
 const root = <Provider store={ store }><App /></Provider>
 render(root, document.getElementById('app'))

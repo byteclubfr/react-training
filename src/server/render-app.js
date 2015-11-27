@@ -13,21 +13,18 @@ const INDEX_HTML = readFileSync(__dirname + '/../../static/index.html', 'utf8')
 export default (req, res) => {
   const store = configureStore()
 
-  // How can I load data? This will process asynchronously and I have no way to listen for the end :(
-  // plus, it's supposed to execute client-side code
-  // store.dispatch(fetchContacts())
+  // Load contacts and wait for promise to be resolved, which means state is ready
+  store.dispatch(fetchContacts(api)).then(() => {
+    const state = store.getState()
+    const stateScript = '<script>window.APP_STATE=' + JSON.stringify(state) + '</script>'
 
-  var state = store.getState()
-  // For now, we'll manually set "loadingContacts" to true so that it matches client-side state
-  state.ui.loadingContacts = true
-  const stateScript = '<script>window.APP_STATE=' + JSON.stringify(state) + '</script>'
+    const root = <Provider store={ store }><App /></Provider>
+    const div = renderToString(root)
 
-  const root = <Provider store={ store }><App /></Provider>
-  const div = renderToString(root)
+    const html = INDEX_HTML
+      .replace(/<!-- APP_HERE -->/, div)
+      .replace(/<!-- STATE_HERE -->/, stateScript)
 
-  const html = INDEX_HTML
-    .replace(/<!-- APP_HERE -->/, div)
-    .replace(/<!-- STATE_HERE -->/, stateScript)
-
-  res.send(html)
+    res.send(html)
+  })
 }
