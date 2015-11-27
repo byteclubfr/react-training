@@ -28,7 +28,7 @@
   },
   "scripts": {
     "build": "npm-run-all 'build:*'",
-    "build:js": "browserify -t babelify src/app.js > static/app.js",
+    "build:js": "browserify --ignore redux-logger -t babelify src/app.js > static/app.js",
     "watch": "npm-run-all --parallel 'watch:*'",
     "watch:js": "watchify -v -p livereactload -t babelify --debug src/app.js -o static/app.js",
     "watch:server": "live-server --port=3000 --ignore=app.js static",
