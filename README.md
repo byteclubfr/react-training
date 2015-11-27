@@ -1,6 +1,6 @@
 # React training
 
-Step 9: Dev stack
+Step 13: Dev stack with full hot reload (assets and JS)
 
 ## Compatibility
 
@@ -15,16 +15,15 @@ npm install
 ## Development
 
 ```sh
-npm start
+npm run watch:server
 ```
 
 ```sh
-npm run watch
+npm run watch:js
 ```
 
 * Browse to ``http://localhost:3000``
-* Edit JS → No need to refresh
-* Edit CSS/HTML → Refresh
+* Edit JS/CSS/HTML → Automatic reload
 
 ## Production
 
