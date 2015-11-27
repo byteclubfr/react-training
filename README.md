@@ -18,9 +18,12 @@ npm install
 npm start
 ```
 
+```sh
+npm run watch
+```
+
 * Browse to ``http://localhost:3000``
 * Edit JS/CSS
-* Rebuild with ``npm run build``
 * Refresh
 
 ## Production
