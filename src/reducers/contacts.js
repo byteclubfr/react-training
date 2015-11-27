@@ -12,13 +12,13 @@ export default createReducer(initialState, {
     contacts: state.contacts.map((c) =>
       c.id === id ? { ...c, friend: !c.friend } : c
     )
-  })
+  }),
 
   ADD_CONTACT: (state, contact) => ({
     ...state,
     contacts: state.contacts.concat([{ ...contact, id: state.nextId }]),
     nextId: state.nextId + 1
-  })
+  }),
 
   RECEIVE_CONTACTS: (state, contacts) => ({
     ...state,
