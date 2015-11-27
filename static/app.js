@@ -1,7 +1,7 @@
 class Contact extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {isFriend: this.props.initialIsFriend}
+    this.state = {isFriend: !!this.props.initialIsFriend}
   }
   toggleFriend () {
     this.setState({isFriend: !this.state.isFriend})
@@ -15,9 +15,14 @@ class Contact extends React.Component {
   }
 }
 
+Contact.propTypes = {
+  name: React.PropTypes.string.isRequired,
+  initialIsFriend: React.PropTypes.bool
+}
+
 function ContactList () {
   return React.createElement('ul', {className: 'contacts'},
-    React.createElement(Contact, {name: 'John', initialIsFriend: false}),
+    React.createElement(Contact, {name: 'John'}),
     React.createElement(Contact, {name: 'Lilian', initialIsFriend: true}),
     React.createElement(Contact, {name: 'Thomas', initialIsFriend: true}),
     React.createElement(Contact, {name: 'Bruno', initialIsFriend: true}),
