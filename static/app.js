@@ -1,14 +1,14 @@
 function Contact (props) {
   return React.createElement('li', {},
-    React.createElement('a', {href: '#'}, 'Contact name'))
+    React.createElement('a', {href: '#'}, props.name))
 }
 
 function ContactList () {
   return React.createElement('ul', {className: 'contacts'},
-    React.createElement(Contact),
-    React.createElement(Contact),
-    React.createElement(Contact),
-    React.createElement(Contact))
+    React.createElement(Contact, {name: 'Lilian'}),
+    React.createElement(Contact, {name: 'Thomas'}),
+    React.createElement(Contact, {name: 'Bruno'}),
+    React.createElement(Contact, {name: 'Nicolas'}))
 }
 
 function Header () {
