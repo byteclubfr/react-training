@@ -1,11 +1,5 @@
-export function toggleFriend (id) {
-  return { type: 'TOGGLE_FRIEND', payload: id }
-}
+import { createAction } from 'redux-actions'
 
-export function addContact (contact) {
-  return { type: 'ADD_CONTACT', payload: contact }
-}
-
-export function receiveContacts (contacts) {
-  return { type: 'RECEIVE_CONTACTS', payload: contacts }
-}
+export const toggleFriend = createAction('TOGGLE_FRIEND', (id) => id)
+export const addContact = createAction('ADD_CONTACT', (contact) => contact)
+export const receiveContacts = createAction('RECEIVE_CONTACTS', (contacts) => contacts)

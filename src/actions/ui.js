@@ -1,3 +1,3 @@
-export function updateFormValue (value) {
-  return { type: 'UPDATE_FORM_VALUE', payload: value }
-}
+import { createAction } from 'redux-actions'
+
+export const updateFormValue = createAction('UPDATE_FORM_VALUE', (value) => value)
