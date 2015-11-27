@@ -1,6 +1,6 @@
 # React training
 
-Step 14: Full dev stack
+Step 15: Communication inter-component
 
 ## Compatibility
 
