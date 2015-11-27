@@ -3,6 +3,8 @@ import { renderToString } from 'react-dom/server'
 import App from '../components/App'
 import { Provider } from 'react-redux'
 import configureStore from '../configure-store'
+import { fetchContacts } from '../actions/contacts'
+import * as api from './api'
 import { readFileSync } from 'fs'
 
 

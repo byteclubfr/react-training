@@ -34,9 +34,9 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production babel-node server.js",
     "build": "npm-run-all 'build:*'",
-    "build:js": "cross-env NODE_ENV=production browserify --ignore redux-logger -t babelify src/app.js > static/app.js",
+    "build:js": "cross-env NODE_ENV=production browserify --ignore redux-logger -t babelify src/client/app.js > static/app.js",
     "watch": "npm-run-all --parallel 'watch:*'",
-    "watch:js": "cross-env NODE_ENV=development watchify -v -p livereactload -t babelify --debug src/app.js -o static/app.js",
+    "watch:js": "cross-env NODE_ENV=development watchify -v -p livereactload -t babelify --debug src/client/app.js -o static/app.js",
     "watch:server": "cross-env NODE_ENV=development nodemon server.js --watch src --watch static/index.html --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
