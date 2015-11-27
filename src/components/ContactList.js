@@ -9,6 +9,10 @@ class ContactList extends React.Component {
   }
 
   render () {
+    if (this.props.loading) {
+      return <div>Loading contacts…</div>
+    }
+
     var contacts = this.props.contacts.map((contact) => this.renderContact(contact))
 
     return (
@@ -21,15 +25,19 @@ class ContactList extends React.Component {
 
 ContactList.propTypes = {
   contacts: React.PropTypes.arrayOf(React.PropTypes.shape({
-    id: React.PropTypes.number.isRequired,
-    name: React.PropTypes.string.isRequired,
-    friend: React.PropTypes.bool.isRequired
-  })).isRequired
+      id: React.PropTypes.number.isRequired,
+      name: React.PropTypes.string.isRequired,
+      friend: React.PropTypes.bool.isRequired
+    })).isRequired,
+  loading: React.PropTypes.bool.isRequired
 }
 
 
 function mapStateToProps (state) {
-  return {contacts: state.contacts.contacts}
+  return {
+    contacts: state.contacts.contacts,
+    loading: state.ui.loadingContacts
+  }
 }
 
 export default connect(mapStateToProps)(ContactList)
