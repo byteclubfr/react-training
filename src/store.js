@@ -4,7 +4,8 @@ import dispatcher from './dispatcher'
 
 var state = {
   contacts: [],
-  formValue: ''
+  formValue: '',
+  contactNextId: 0
 }
 
 
@@ -12,6 +13,7 @@ var state = {
 
 dispatcher.on('RECEIVE_CONTACTS', (contacts) => {
   state.contacts = contacts
+  state.contactNextId = Math.max.apply(null, contacts.map((c) => c.id)) + 1
   notify()
 })
 
@@ -24,7 +26,22 @@ dispatcher.on('ADD_CONTACT', (contact) => {
   if (state.contacts.find(c => c.name === contact.name)) {
     console.error('Contact already added')
   } else {
-    state.contacts.push(contact)
+    state.contacts.push({
+      id: state.contactNextId,
+      name: contact.name,
+      friend: !!contact.friend
+    })
+    state.contactNextId ++
+    notify()
+  }
+})
+
+dispatcher.on('TOGGLE_FRIEND', (id) => {
+  var found = state.contacts.find(c => c.id === id)
+  if (!found) {
+    console.error('Contact not found')
+  } else {
+    found.friend = !found.friend
     notify()
   }
 })

@@ -1,16 +1,14 @@
 import React from 'react'
+import dispatcher from '../dispatcher'
 
 
 export default class Contact extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {isFriend: !!this.props.initialIsFriend}
-  }
   toggleFriend () {
-    this.setState({isFriend: !this.state.isFriend})
+    dispatcher.emit('TOGGLE_FRIEND', this.props.id)
   }
+
   render () {
-    var heart = this.state.isFriend ? '♥' : '♡'
+    var heart = this.props.friend ? '♥' : '♡'
 
     return (
       <li>
@@ -22,6 +20,7 @@ export default class Contact extends React.Component {
 }
 
 Contact.propTypes = {
+  id: React.PropTypes.number.isRequired,
   name: React.PropTypes.string.isRequired,
-  initialIsFriend: React.PropTypes.bool
+  friend: React.PropTypes.bool.isRequired
 }

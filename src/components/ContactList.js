@@ -17,7 +17,7 @@ export default class ContactList extends React.Component {
 
 
   renderContact (contact) {
-    return <Contact key={ contact.name } name={ contact.name } initialIsFriend={ !!contact.friend } />
+    return <Contact key={ contact.id } id={ contact.id } name={ contact.name } friend={ contact.friend } />
   }
 
   render () {
