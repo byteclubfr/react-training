@@ -20,8 +20,13 @@ npm start
 
 * Browse to ``http://localhost:3000``
 * Edit JS/CSS
+* Rebuild with ``npm run build``
 * Refresh
 
 ## Production
+
+```sh
+npm run build -- --no-debug
+```
 
 Deploy.
