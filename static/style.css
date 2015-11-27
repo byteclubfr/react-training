@@ -30,3 +30,11 @@ header a.active {
 header a:first-child {
   margin-left: 4vw;
 }
+
+.contacts {
+  list-style-type: none;
+}
+.contacts .is-friend {
+  cursor: pointer;
+  padding: 0 0.5em;
+}

@@ -1,14 +1,27 @@
-function Contact (props) {
-  return React.createElement('li', {},
-    React.createElement('a', {href: '#'}, props.name))
-}
+var Contact = React.createClass({
+  getInitialState () {
+    return {isFriend: this.props.initialIsFriend}
+  },
+  toggleFriend () {
+    this.setState({isFriend: !this.state.isFriend})
+  },
+  render () {
+    var heart = this.state.isFriend ? '♥' : '♡'
+    var self = this
+
+    return React.createElement('li', {},
+      React.createElement('span', {className: 'is-friend', onClick: function () { self.toggleFriend() }}, heart),
+      React.createElement('a', {href: '#'}, this.props.name))
+  }
+})
 
 function ContactList () {
   return React.createElement('ul', {className: 'contacts'},
-    React.createElement(Contact, {name: 'Lilian'}),
-    React.createElement(Contact, {name: 'Thomas'}),
-    React.createElement(Contact, {name: 'Bruno'}),
-    React.createElement(Contact, {name: 'Nicolas'}))
+    React.createElement(Contact, {name: 'John', initialIsFriend: false}),
+    React.createElement(Contact, {name: 'Lilian', initialIsFriend: true}),
+    React.createElement(Contact, {name: 'Thomas', initialIsFriend: true}),
+    React.createElement(Contact, {name: 'Bruno', initialIsFriend: true}),
+    React.createElement(Contact, {name: 'Nicolas', initialIsFriend: true}))
 }
 
 function Header () {
