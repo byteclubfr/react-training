@@ -2,8 +2,11 @@
   "name": "react-training",
   "version": "1.0.0",
   "description": "React Training, step by step",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
+    "babel": "^5.8.34",
+    "express": "^4.13.3",
+    "livereload": "^0.4.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.0",
@@ -18,9 +21,10 @@
     "babel-preset-react": "^6.1.18",
     "babelify": "^6.4.0",
     "browserify": "^12.0.1",
+    "connect-livereload": "^0.5.4",
     "cross-env": "^1.0.4",
-    "live-server": "^0.8.2",
     "livereactload": "^2.1.0",
+    "nodemon": "^1.8.1",
     "npm-run-all": "^1.3.2",
     "react-proxy": "^1.1.1",
     "serve": "^1.4.0",
@@ -28,11 +32,12 @@
     "watchify": "^3.6.1"
   },
   "scripts": {
+    "start": "cross-env NODE_ENV=production babel-node server.js",
     "build": "npm-run-all 'build:*'",
     "build:js": "cross-env NODE_ENV=production browserify --ignore redux-logger -t babelify src/app.js > static/app.js",
     "watch": "npm-run-all --parallel 'watch:*'",
     "watch:js": "cross-env NODE_ENV=development watchify -v -p livereactload -t babelify --debug src/app.js -o static/app.js",
-    "watch:server": "live-server --port=3000 --ignore=app.js static",
+    "watch:server": "cross-env NODE_ENV=development nodemon server.js --watch src --watch static/index.html --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

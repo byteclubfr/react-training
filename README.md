@@ -1,6 +1,6 @@
 # React training
 
-Step 17: Redux
+Step 19: Server rendering
 
 ## Compatibility
 
