@@ -1,8 +1,8 @@
 import createLogger from 'redux-logger'
 
 export default () => {
-  if (typeof createLogger === 'function') {
-    // Module not ignored: OK
+  if (typeof createLogger === 'function' && typeof window !== 'undefined') {
+    // Module not ignored, and client-side: OK
     return createLogger()
   } else {
     // Return a "no-op" middleware
