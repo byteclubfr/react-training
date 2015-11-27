@@ -1,3 +1,5 @@
+var h = React.createElement
+
 class Contact extends React.Component {
   constructor (props) {
     super(props)
@@ -9,9 +11,12 @@ class Contact extends React.Component {
   render () {
     var heart = this.state.isFriend ? '♥' : '♡'
 
-    return React.createElement('li', {},
-      React.createElement('span', {className: 'is-friend', onClick: () => this.toggleFriend()}, heart),
-      React.createElement('a', {href: '#'}, this.props.name))
+    return (
+      h('li', {},
+        h('span', {className: 'is-friend', onClick: () => this.toggleFriend()}, heart),
+        h('a', {href: '#'}, this.props.name)
+      ) // li
+    )
   }
 }
 
@@ -21,27 +26,37 @@ Contact.propTypes = {
 }
 
 function ContactList () {
-  return React.createElement('ul', {className: 'contacts'},
-    React.createElement(Contact, {name: 'John'}),
-    React.createElement(Contact, {name: 'Lilian', initialIsFriend: true}),
-    React.createElement(Contact, {name: 'Thomas', initialIsFriend: true}),
-    React.createElement(Contact, {name: 'Bruno', initialIsFriend: true}),
-    React.createElement(Contact, {name: 'Nicolas', initialIsFriend: true}))
+  return (
+    h('ul', {className: 'contacts'},
+      h(Contact, {name: 'John'}),
+      h(Contact, {name: 'Lilian', initialIsFriend: true}),
+      h(Contact, {name: 'Thomas', initialIsFriend: true}),
+      h(Contact, {name: 'Bruno', initialIsFriend: true}),
+      h(Contact, {name: 'Nicolas', initialIsFriend: true})
+    ) // ul
+  )
 }
 
 function Header () {
-  return React.createElement('header', {},
-    React.createElement('h1', {}, 'Contact List'),
-    React.createElement('nav', {},
-      React.createElement('a', {href: '#'}, 'Home'),
-      React.createElement('a', {href: '#', className: 'active'}, 'Contacts')))
+  return (
+    h('header', {},
+      h('h1', {}, 'Contact List'),
+      h('nav', {},
+        h('a', {href: '#'}, 'Home'),
+        h('a', {href: '#', className: 'active'}, 'Contacts')
+      ) // nav
+    ) // header
+  )
 }
 
 function App () {
-  return React.createElement('div', {},
-    React.createElement(Header),
-    React.createElement(ContactList))
+  return (
+    h('div', {},
+      h(Header),
+      h(ContactList)
+    ) // div
+  )
 }
 
-var root = React.createElement(App)
+var root = h(App)
 ReactDOM.render(root, document.getElementById('app'))
