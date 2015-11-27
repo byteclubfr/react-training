@@ -1,19 +1,19 @@
-var Contact = React.createClass({
-  getInitialState () {
-    return {isFriend: this.props.initialIsFriend}
-  },
+class Contact extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {isFriend: this.props.initialIsFriend}
+  }
   toggleFriend () {
     this.setState({isFriend: !this.state.isFriend})
-  },
+  }
   render () {
     var heart = this.state.isFriend ? '♥' : '♡'
-    var self = this
 
     return React.createElement('li', {},
-      React.createElement('span', {className: 'is-friend', onClick: function () { self.toggleFriend() }}, heart),
+      React.createElement('span', {className: 'is-friend', onClick: () => this.toggleFriend()}, heart),
       React.createElement('a', {href: '#'}, this.props.name))
   }
-})
+}
 
 function ContactList () {
   return React.createElement('ul', {className: 'contacts'},

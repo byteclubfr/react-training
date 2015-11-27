@@ -1,6 +1,12 @@
 # React training
 
-Step 1: discover React
+Step 5: introducing ES6 for shorter code
+
+## Compatibility
+
+* Chrome ≥ 45
+* Firefox ≥ 22
+* IE ≥ Edge
 
 ## Installation
 
