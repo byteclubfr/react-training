@@ -9,7 +9,10 @@ import * as api from './api'
 
 const store = configureStore(window.APP_STATE)
 
-//store.dispatch(fetchContacts(api))
+if (!window.APP_STATE) {
+  // No server-side rendering: we need to fetch initial data
+  store.dispatch(fetchContacts(api))
+}
 
 const root = <Provider store={ store }><App /></Provider>
 render(root, document.getElementById('app'))
