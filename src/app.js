@@ -6,9 +6,9 @@ import configureStore from './configure-store'
 import { fetchContacts } from './actions/contacts'
 
 
-var store = configureStore()
+const store = configureStore(window.APP_STATE)
 
 store.dispatch(fetchContacts())
 
-var root = <Provider store={ store }><App /></Provider>
+const root = <Provider store={ store }><App /></Provider>
 render(root, document.getElementById('app'))

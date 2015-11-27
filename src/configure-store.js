@@ -6,11 +6,11 @@ import loggerMiddleware from './helpers/redux-logger'
 
 const reducer = combineReducers({ ui, contacts })
 
-export default () => {
+export default (state) => {
   const createStoreWithMiddleware = applyMiddleware(
     thunkMiddleware,
     loggerMiddleware()
   )(createStore)
 
-  return createStoreWithMiddleware(reducer)
+  return createStoreWithMiddleware(reducer, state)
 }
