@@ -1,6 +1,6 @@
 # React training
 
-Step 15: Communication inter-component
+Step 16: Flux
 
 ## Compatibility
 

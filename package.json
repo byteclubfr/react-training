@@ -4,6 +4,7 @@
   "description": "React Training, step by step",
   "main": "index.js",
   "dependencies": {
+    "jvent": "^0.2.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.3"
   },
