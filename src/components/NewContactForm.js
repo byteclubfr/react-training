@@ -1,12 +1,13 @@
 import React from 'react' // required for JSX
-import { connect } from '../store'
-import dispatcher from '../dispatcher'
+import { connect } from 'react-redux'
+import { updateFormValue } from '../actions/ui'
+import { addContact } from '../actions/contacts'
 
 
 class NewContactForm extends React.Component {
 
   updateValue (value) {
-    dispatcher.emit('UPDATE_FORM_VALUE', value)
+    this.props.updateFormValue(value)
   }
 
   onChange (e) {
@@ -15,7 +16,7 @@ class NewContactForm extends React.Component {
 
   onSubmit (e) {
     e.preventDefault()
-    dispatcher.emit('ADD_CONTACT', {name: this.props.currentValue, friend: false})
+    this.props.addContact({name: this.props.currentValue, friend: false})
     this.updateValue('')
   }
 
@@ -29,7 +30,16 @@ class NewContactForm extends React.Component {
 }
 
 NewContactForm.propTypes = {
+  addContact: React.PropTypes.func.isRequired,
+  updateFormValue: React.PropTypes.func.isRequired,
   currentValue: React.PropTypes.string.isRequired
 }
 
-export default connect(NewContactForm, (state) => ({currentValue: state.formValue}))
+
+function mapStateToProps (state) {
+  return {currentValue: state.ui.formValue}
+}
+
+var actions = { addContact, updateFormValue }
+
+export default connect(mapStateToProps, actions)(NewContactForm)

@@ -1,6 +1,6 @@
 # React training
 
-Step 16: Flux
+Step 17: Redux
 
 ## Compatibility
 

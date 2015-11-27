@@ -1,10 +1,11 @@
 import React from 'react'
-import dispatcher from '../dispatcher'
+import { connect } from 'react-redux'
+import { toggleFriend } from '../actions/contacts'
 
 
-export default class Contact extends React.Component {
+class Contact extends React.Component {
   toggleFriend () {
-    dispatcher.emit('TOGGLE_FRIEND', this.props.id)
+    this.props.toggleFriend(this.props.id)
   }
 
   render () {
@@ -20,7 +21,13 @@ export default class Contact extends React.Component {
 }
 
 Contact.propTypes = {
+  toggleFriend: React.PropTypes.func.isRequired,
   id: React.PropTypes.number.isRequired,
   name: React.PropTypes.string.isRequired,
   friend: React.PropTypes.bool.isRequired
 }
+
+
+var actions = { toggleFriend }
+
+export default connect(null, actions)(Contact)

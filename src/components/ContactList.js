@@ -1,6 +1,6 @@
 import React from 'react' // required for JSX
 import Contact from './Contact'
-import { connect } from '../store'
+import { connect } from 'react-redux'
 
 
 class ContactList extends React.Component {
@@ -19,14 +19,17 @@ class ContactList extends React.Component {
   }
 }
 
-ContactList.propTypes = React.PropTypes.arrayOf(
-  React.PropTypes.shape({
+ContactList.propTypes = {
+  contacts: React.PropTypes.arrayOf(React.PropTypes.shape({
     id: React.PropTypes.number.isRequired,
     name: React.PropTypes.string.isRequired,
     friend: React.PropTypes.bool.isRequired
-  })
-).isRequired
+  })).isRequired
+}
 
-export default connect(ContactList, (state) => {
-  return ({contacts: state.contacts})
-})
+
+function mapStateToProps (state) {
+  return {contacts: state.contacts.contacts}
+}
+
+export default connect(mapStateToProps)(ContactList)
