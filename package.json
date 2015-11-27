@@ -16,13 +16,13 @@
     "redux-thunk": "^1.0.0"
   },
   "devDependencies": {
+    "@naholyr/cross-env": "0.0.0-semanticallly-released.0",
     "babel-plugin-react-transform": "^1.1.1",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
     "babelify": "^6.4.0",
     "browserify": "^12.0.1",
     "connect-livereload": "^0.5.4",
-    "cross-env": "^1.0.4",
     "livereactload": "^2.1.0",
     "nodemon": "^1.8.1",
     "npm-run-all": "^1.3.2",
@@ -38,7 +38,11 @@
     "watch": "npm-run-all --parallel 'watch:*'",
     "watch:js": "cross-env NODE_ENV=development watchify -v -p livereactload -t babelify --debug src/client/app.js -o static/app.js",
     "watch:server": "cross-env NODE_ENV=development nodemon server.js --watch src --watch static/index.html --exec babel-node",
+    "watch:livereload": "babel-node ./src/server/lr-server",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "config": {
+    "LR_PORT": 34789
   },
   "repository": {
     "type": "git",
