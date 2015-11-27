@@ -1,7 +1,6 @@
 import React from 'react' // required for JSX
 import Header from './Header'
 import ContactList from './ContactList'
-import NewContactForm from './NewContactForm'
 
 
 export default class App extends React.Component {
@@ -9,8 +8,7 @@ export default class App extends React.Component {
     return (
       <div>
         <Header />
-        <ContactList />
-        <NewContactForm />
+        { this.props.children }
       </div>
     )
   }

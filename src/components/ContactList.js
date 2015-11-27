@@ -1,5 +1,6 @@
 import React from 'react' // required for JSX
 import Contact from './Contact'
+import NewContactForm from './NewContactForm'
 import { connect } from 'react-redux'
 
 
@@ -16,9 +17,15 @@ class ContactList extends React.Component {
     var contacts = this.props.contacts.map((contact) => this.renderContact(contact))
 
     return (
-      <ul className="contacts">
-        { contacts }
-      </ul>
+      <div className="contacts">
+        <div className="contact-list">
+          <ul>
+            { contacts }
+          </ul>
+          <NewContactForm />
+        </div>
+        { this.props.children }
+      </div>
     )
   }
 }

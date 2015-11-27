@@ -1,4 +1,5 @@
 import React from 'react' // required for JSX
+import { IndexLink, Link } from 'react-router'
 
 
 export default function Header () {
@@ -6,8 +7,8 @@ export default function Header () {
     <header>
       <h1>Contact List</h1>
       <nav>
-        <a href="#">Home</a>
-        <a href="#" className="active">Contacts</a>
+        <IndexLink to="/" activeClassName="active">Home</IndexLink>
+        <Link to="/contacts" activeClassName="active">Contacts</Link>
       </nav>
     </header>
   )

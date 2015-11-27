@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { toggleFriend } from '../actions/contacts'
+import { Link } from 'react-router'
 
 
 class Contact extends React.Component {
@@ -14,7 +15,7 @@ class Contact extends React.Component {
     return (
       <li>
         <span className="is-friend" onClick={ () => this.toggleFriend() }>{ heart }</span>
-        <a href="#">{ this.props.name }</a>
+        <Link to={ '/contacts/' + this.props.id } activeClassName="active">{ this.props.name }</Link>
       </li>
     )
   }

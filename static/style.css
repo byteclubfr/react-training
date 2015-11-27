@@ -32,11 +32,26 @@ header a:first-child {
 }
 
 .contacts {
+  display: flex;
+  flex-flow: row;
+}
+.contacts .contact-list {
+  flex: 1 1 250px;
+}
+.contacts .contact-details {
+  flex: 5 3 70%;
+}
+
+.contacts .contact-list ul {
   list-style-type: none;
 }
-.contacts .is-friend {
+.contacts .contact-list ul .is-friend {
   cursor: pointer;
   padding: 0 0.5em;
+}
+.contacts .contact-list ul a.active {
+  color: #000;
+  text-decoration: none;
 }
 
 form {
