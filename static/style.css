@@ -20,11 +20,11 @@ header a {
   border: 1px solid #ccc;
   padding: 1vw;
   background: #fff;
-  margin-bottom: 0px;
+  margin-bottom: -1px;
 }
 
 header a.active {
-  border-bottom: 1px solid #fff;
+  border-bottom: 2px solid #fff;
 }
 
 header a:first-child {
