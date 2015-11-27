@@ -38,3 +38,7 @@ header a:first-child {
   cursor: pointer;
   padding: 0 0.5em;
 }
+
+form {
+  padding: 2em;
+}
