@@ -23,8 +23,8 @@ npm run watch
 ```
 
 * Browse to ``http://localhost:3000``
-* Edit JS/CSS
-* Refresh
+* Edit JS → No need to refresh
+* Edit CSS/HTML → Refresh
 
 ## Production
 
