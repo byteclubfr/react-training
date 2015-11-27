@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Sans serif;
+  font-size: 18px;
+}
+
+header h1 {
+  margin: 4vw;
+  padding: 0;
+}
+
+nav {
+  border-bottom: 1px solid #ccc;
+}
+
+header a {
+  margin-left: 1vw;
+  display: inline-block;
+  border: 1px solid #ccc;
+  padding: 1vw;
+  background: #fff;
+  margin-bottom: 0px;
+}
+
+header a.active {
+  border-bottom: 1px solid #fff;
+}
+
+header a:first-child {
+  margin-left: 4vw;
+}
