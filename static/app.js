@@ -1,5 +1,3 @@
-var h = React.createElement
-
 class Contact extends React.Component {
   constructor (props) {
     super(props)
@@ -12,10 +10,10 @@ class Contact extends React.Component {
     var heart = this.state.isFriend ? '♥' : '♡'
 
     return (
-      h('li', {},
-        h('span', {className: 'is-friend', onClick: () => this.toggleFriend()}, heart),
-        h('a', {href: '#'}, this.props.name)
-      ) // li
+      <li>
+        <span className="is-friend" onClick={ () => this.toggleFriend() }>{ heart }</span>
+        <a href="#">{ this.props.name }</a>
+      </li>
     )
   }
 }
@@ -27,36 +25,36 @@ Contact.propTypes = {
 
 function ContactList () {
   return (
-    h('ul', {className: 'contacts'},
-      h(Contact, {name: 'John'}),
-      h(Contact, {name: 'Lilian', initialIsFriend: true}),
-      h(Contact, {name: 'Thomas', initialIsFriend: true}),
-      h(Contact, {name: 'Bruno', initialIsFriend: true}),
-      h(Contact, {name: 'Nicolas', initialIsFriend: true})
-    ) // ul
+    <ul className="contacts">
+      <Contact name="John" />
+      <Contact name="Lilian" initialIsFriend={ true } />
+      <Contact name="Thomas" initialIsFriend={ true } />
+      <Contact name="Bruno" initialIsFriend={ true } />
+      <Contact name="Nicolas" initialIsFriend={ true } />
+    </ul>
   )
 }
 
 function Header () {
   return (
-    h('header', {},
-      h('h1', {}, 'Contact List'),
-      h('nav', {},
-        h('a', {href: '#'}, 'Home'),
-        h('a', {href: '#', className: 'active'}, 'Contacts')
-      ) // nav
-    ) // header
+    <header>
+      <h1>Contact List</h1>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#" className="active">Contacts</a>
+      </nav>
+    </header>
   )
 }
 
 function App () {
   return (
-    h('div', {},
-      h(Header),
-      h(ContactList)
-    ) // div
+    <div>
+      <Header />
+      <ContactList />
+    </div>
   )
 }
 
-var root = h(App)
+var root = <App />
 ReactDOM.render(root, document.getElementById('app'))
