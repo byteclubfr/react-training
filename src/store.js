@@ -1,3 +1,4 @@
+import React from 'react'
 import JVent from 'jvent'
 import dispatcher from './dispatcher'
 
@@ -66,3 +67,20 @@ function notify () {
   store.emit('CHANGE', state)
 }
 
+export function connect (Component, mapStateToProps) {
+  return class ConnectedComponent extends React.Component {
+    constructor (props) {
+      super(props)
+      this.state = mapStateToProps(getState())
+    }
+    componentWillMount () {
+      this.unsubscribeStore = subscribe((state) => this.setState(mapStateToProps(state)))
+    }
+    componentWillUnmount () {
+      this.unsubscribeStore()
+    }
+    render () {
+      return <Component { ...this.props } { ...this.state } />
+    }
+  }
+}

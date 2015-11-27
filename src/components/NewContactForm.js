@@ -1,19 +1,9 @@
 import React from 'react' // required for JSX
-import { subscribe, getState } from '../store'
+import { connect } from '../store'
 import dispatcher from '../dispatcher'
 
 
-export default class NameForm extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {currentValue: getState().formValue}
-  }
-  componentWillMount () {
-    this.unsubscribeStore = subscribe((state) => this.setState({currentValue: state.formValue}))
-  }
-  componentWillUnmount () {
-    this.unsubscribeStore()
-  }
+class NewContactForm extends React.Component {
 
   updateValue (value) {
     dispatcher.emit('UPDATE_FORM_VALUE', value)
@@ -25,16 +15,21 @@ export default class NameForm extends React.Component {
 
   onSubmit (e) {
     e.preventDefault()
-    dispatcher.emit('ADD_CONTACT', {name: this.state.currentValue, friend: false})
+    dispatcher.emit('ADD_CONTACT', {name: this.props.currentValue, friend: false})
     this.updateValue('')
   }
 
   render () {
     return (
       <form onSubmit={ (e) => this.onSubmit(e) }>
-        <input type="text" onChange={ (e) => this.onChange(e) } value={ this.state.currentValue } placeholder="Add a contact" />
+        <input type="text" onChange={ (e) => this.onChange(e) } value={ this.props.currentValue } placeholder="Add a contact" />
       </form>
     )
   }
 }
 
+NewContactForm.propTypes = {
+  currentValue: React.PropTypes.string.isRequired
+}
+
+export default connect(NewContactForm, (state) => ({currentValue: state.formValue}))
