@@ -15,13 +15,16 @@
     "browserify": "^12.0.1",
     "live-server": "^0.8.2",
     "livereactload": "^2.1.0",
+    "npm-run-all": "^1.3.2",
     "react-proxy": "^1.1.1",
     "serve": "^1.4.0",
+    "uglify-js": "^2.6.1",
     "watchify": "^3.6.1"
   },
   "scripts": {
-    "start": "serve --port 3000 static",
-    "build": "browserify -t babelify --debug src/app.js > static/app.js",
+    "build": "npm-run-all 'build:*'",
+    "build:js": "browserify -t babelify src/app.js > static/app.js",
+    "watch": "npm-run-all --parallel 'watch:*'",
     "watch:js": "watchify -v -p livereactload -t babelify --debug src/app.js -o static/app.js",
     "watch:server": "live-server --port=3000 --ignore=app.js static",
     "test": "echo \"Error: no test specified\" && exit 1"

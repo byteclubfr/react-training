@@ -1,6 +1,6 @@
 # React training
 
-Step 13: Dev stack with full hot reload (assets and JS)
+Step 14: Full dev stack
 
 ## Compatibility
 
@@ -15,11 +15,7 @@ npm install
 ## Development
 
 ```sh
-npm run watch:server
-```
-
-```sh
-npm run watch:js
+npm run watch
 ```
 
 * Browse to ``http://localhost:3000``
@@ -28,7 +24,7 @@ npm run watch:js
 ## Production
 
 ```sh
-npm run build -- --no-debug
+npm run build
 ```
 
 Deploy.
