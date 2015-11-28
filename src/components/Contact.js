@@ -31,4 +31,4 @@ Contact.propTypes = {
 
 var actions = { toggleFriend }
 
-export default connect(null, actions)(Contact)
+export default connect(null, actions, null, { pure: false })(Contact)
