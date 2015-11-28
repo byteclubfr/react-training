@@ -5,6 +5,7 @@ import ContactList from './components/ContactList'
 import ContactDetails from './components/ContactDetails'
 import Home from './components/Home'
 import { loadContacts, loadContactInfo } from './data-loaders'
+import dataLoaderToHook from './helpers/data-loader-hook'
 
 export default (api, { dispatch, getState }, pendingCallback) => {
   const hook = dataLoaderToHook(api, { dispatch, getState }, pendingCallback)
@@ -18,23 +19,3 @@ export default (api, { dispatch, getState }, pendingCallback) => {
     </Route>
   )
 }
-
-
-function dataLoaderToHook (api, { dispatch, getState }, pendingCallback = noop) {
-  return (loader, blocking) => (routerState, transition, next) => {
-    const result = loader(api, dispatch, getState, routerState)
-    if (result && typeof result.then === 'function') {
-      // pending action
-      pendingCallback(result)
-      if (blocking) {
-        result.then(() => next())
-      } else {
-        next()
-      }
-    } else {
-      next()
-    }
-  }
-}
-
-function noop () {}
