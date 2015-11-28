@@ -10,9 +10,6 @@ export function fetchContacts () {
 
 export function fetchContactInfo (id) {
   return new Promise((resolve, reject) => window.setTimeout(() => resolve({
-    id,
-    name: 'Contact #' + id + '\'s name from DB',
-    friend: Math.random() > 0.5,
     address: 'Contact #' + id + '\'s address from DB'
   }), 500))
 }
