@@ -10,7 +10,7 @@ export const fetchContacts = (api) => (dispatch) => {
   return api.fetchContacts().then((data) => dispatch(receiveContacts(data)))
 }
 
-const receiveContactInfo = createAction('RECEIVE_CONTACT_INFO', (id, info) => ({id, info}))
+const receiveContactInfo = createAction('RECEIVE_CONTACT_INFO', (id, info) => ({id: Number(id), info}))
 const requestContactInfo = createAction('REQUEST_CONTACT_INFO')
 export const fetchContactInfo = (api, id) => (dispatch) => {
   dispatch(requestContactInfo(id))
