@@ -24,6 +24,13 @@ export default createReducer(initialState, {
     ...state,
     contacts,
     nextId: Math.max(...contacts.map((c) => c.id)) + 1
+  }),
+
+  RECEIVE_CONTACT_INFO: (state, {id, info}) => ({
+    ...state,
+    contacts: state.contacts.map((c) =>
+      c.id === id ? { ...c, info } : c
+    )
   })
 
 })

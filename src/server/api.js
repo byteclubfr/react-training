@@ -7,3 +7,12 @@ export function fetchContacts () {
     { id: 4, name: "Nicolas", friend: true }
   ]), 500))
 }
+
+export function fetchContactInfo (id) {
+  return new Promise((resolve, reject) => global.setTimeout(() => resolve({
+    id,
+    name: 'Contact #' + id + '\'s name from DB',
+    friend: Math.random() > 0.5,
+    address: 'Contact #' + id + '\'s address from DB'
+  }), 500))
+}

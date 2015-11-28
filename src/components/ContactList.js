@@ -2,11 +2,20 @@ import React from 'react' // required for JSX
 import Contact from './Contact'
 import NewContactForm from './NewContactForm'
 import { connect } from 'react-redux'
+import * as api from '../client/api' // There is a huge flaw here, as this code should be executed server-side too
+import { fetchContacts } from '../actions/contacts'
 
 
 class ContactList extends React.Component {
   renderContact (contact) {
     return <Contact key={ contact.id } id={ contact.id } name={ contact.name } friend={ contact.friend } />
+  }
+
+  componentWillMount () {
+    // Another issue here: how to NOT load data when server-rendered?
+    if (!this.props.contacts.length) {
+      this.props.fetchContacts(api)
+    }
   }
 
   render () {
@@ -47,4 +56,6 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(ContactList)
+const actions = { fetchContacts }
+
+export default connect(mapStateToProps, actions)(ContactList)
