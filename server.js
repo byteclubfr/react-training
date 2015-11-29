@@ -1,6 +1,7 @@
 import express from 'express'
 import connectLivereload from 'connect-livereload'
 import renderApp from './src/server/render-app'
+import { getContacts, getContact } from './src/server/get-contacts'
 
 
 const app = express()
@@ -18,6 +19,10 @@ if (app.get('env') !== 'production') {
     ignore: [/\/app\.js$/] // Ignore built app.js, which is handled by hot reload with watchify
   }))
 }
+
+// API
+app.get('/api/contacts.json', getContacts)
+app.get('/api/contacts/:id.json', getContact)
 
 // Catch-all = render React app
 app.get('/*', renderApp)

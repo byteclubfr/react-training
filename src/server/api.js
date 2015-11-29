@@ -1,4 +1,5 @@
 import { contacts } from '../data/db.js'
+
 export function fetchContacts () {
   return new Promise((resolve, reject) => global.setTimeout(() => resolve(contacts), 500))
 }

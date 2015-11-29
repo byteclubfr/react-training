@@ -1,11 +1,9 @@
-import { contacts } from '../data/db.js'
+import fetch from 'isomorphic-fetch'
 
 export function fetchContacts () {
-  return new Promise((resolve, reject) => window.setTimeout(() => resolve(contacts), 500))
+ return fetch('/api/contacts.json').then(req => req.json())
 }
 
 export function fetchContactInfo (id) {
-  return new Promise((resolve, reject) => window.setTimeout(() => resolve({
-    address: 'Contact #' + id + '\'s address from DB'
-  }), 500))
+ return fetch(`/api/contacts/${id}.json`).then(req => req.json())
 }
