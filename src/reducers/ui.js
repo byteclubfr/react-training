@@ -5,6 +5,7 @@ const initialState = {
   loadingContacts: false
 }
 
+// TODO add REQUEST_POST_CONTACT
 export default createReducer(initialState, {
 
   UPDATE_FORM_VALUE: (state, value) => ({

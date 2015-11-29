@@ -1,7 +1,8 @@
 import React from 'react' // required for JSX
 import { connect } from 'react-redux'
 import { updateFormValue } from '../actions/ui'
-import { addContact } from '../actions/contacts'
+import { postContact } from '../actions/contacts'
+import * as api from '../client/api'
 
 
 class NewContactForm extends React.Component {
@@ -16,7 +17,7 @@ class NewContactForm extends React.Component {
 
   onSubmit (e) {
     e.preventDefault()
-    this.props.addContact({name: this.props.currentValue, friend: false})
+    this.props.postContact(api, {name: this.props.currentValue, friend: false})
     this.updateValue('')
   }
 
@@ -30,7 +31,7 @@ class NewContactForm extends React.Component {
 }
 
 NewContactForm.propTypes = {
-  addContact: React.PropTypes.func.isRequired,
+  postContact: React.PropTypes.func.isRequired,
   updateFormValue: React.PropTypes.func.isRequired,
   currentValue: React.PropTypes.string.isRequired
 }
@@ -40,6 +41,6 @@ function mapStateToProps (state) {
   return {currentValue: state.ui.formValue}
 }
 
-var actions = { addContact, updateFormValue }
+var actions = { postContact, updateFormValue }
 
 export default connect(mapStateToProps, actions)(NewContactForm)

@@ -3,6 +3,12 @@ import { createAction } from 'redux-actions'
 export const toggleFriend = createAction('TOGGLE_FRIEND', (id) => id)
 export const addContact = createAction('ADD_CONTACT', (contact) => contact)
 
+const requestPostContact = createAction('REQUEST_POST_CONTACT')
+export const postContact = (api, contact) => (dispatch) => {
+  dispatch(requestPostContact(contact))
+  return api.postContact(contact).then((data) => dispatch(addContact(data)))
+}
+
 const receiveContacts = createAction('RECEIVE_CONTACTS', (contacts) => contacts)
 const requestContacts = createAction('REQUEST_CONTACTS')
 export const fetchContacts = (api) => (dispatch) => {

@@ -1,7 +1,8 @@
 import express from 'express'
+import bodyParser from 'body-parser'
 import connectLivereload from 'connect-livereload'
 import renderApp from './src/server/render-app'
-import { getContacts, getContact } from './src/server/get-contacts'
+import { getContacts, getContact, postContact } from './src/server/routes-contacts'
 
 
 const app = express()
@@ -20,9 +21,14 @@ if (app.get('env') !== 'production') {
   }))
 }
 
+// req.body
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 // API
-app.get('/api/contacts.json', getContacts)
-app.get('/api/contacts/:id.json', getContact)
+app.get('/api/contacts', getContacts)
+app.post('/api/contacts', postContact)
+app.get('/api/contacts/:id', getContact)
 
 // Catch-all = render React app
 app.get('/*', renderApp)
