@@ -1,5 +1,6 @@
 import { addContact } from '../actions/contacts'
 import getPopulatedStore from './store'
+import { contacts as db } from '../data/db.js'
 
 function getStoredContacts () {
   return getPopulatedStore().then((store) => store.getState().contacts.contacts)
@@ -23,6 +24,8 @@ export function postContact (req, res) {
   getPopulatedStore().then((store) => {
     store.dispatch(addContact(req.body))
     const contacts = store.getState().contacts.contacts
-    res.json(contacts[contacts.length - 1])
+    const newContact = contacts[contacts.length - 1]
+    db.push(newContact)
+    res.json(newContact)
   })
 }
