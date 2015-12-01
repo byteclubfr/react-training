@@ -1,7 +1,14 @@
-import { addContact } from '../actions/contacts'
-import getPopulatedStore from './store'
+import * as api from './api'
+import { fetchContacts, addContact } from '../actions/contacts'
+import configureStore from '../configure-store'
 import { contacts as db } from '../data/db.js'
 
+// store helpers
+
+function getPopulatedStore () {
+  const store = configureStore()
+  return store.dispatch(fetchContacts(api)).then(() => store)
+}
 function getStoredContacts () {
   return getPopulatedStore().then((store) => store.getState().contacts.contacts)
 }
@@ -25,6 +32,7 @@ export function postContact (req, res) {
     store.dispatch(addContact(req.body))
     const contacts = store.getState().contacts.contacts
     const newContact = contacts[contacts.length - 1]
+    // this push should be a dedicated API
     db.push(newContact)
     res.json(newContact)
   })

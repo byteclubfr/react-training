@@ -1,6 +1,6 @@
 # React training
 
-Step 21: Data fetching
+Step 22: Data posting - adding new contact
 
 ## Compatibility
 
@@ -49,7 +49,7 @@ Let's think about what we need to achieve this goal:
   * client-side: we must load it conditionnally, using client's ``api`` module:
     * not if data is already loaded (business-logic), we may need **app's state** for that
     * supposedly not at first rendering
-* Server-side: *Know **when** data is loaded** to respond to client
+* Server-side: *Know **when** data is loaded* to respond to client
   * Each async action must return a **Promise** to be *watchable*
   * We must keep track of **pending actions** to watch them all, and this queue cannot be global:
     * Attached to root component (via *context*)
